@@ -11,6 +11,7 @@ function App() {
         </p>
         <p>เอาล่ะ พวกเราจะทำงานเสร็จกันไหมนะ</p>
         <p>ชื่อเว็บยังไม่มี แต่เป็นฝากซื้อข้าวน่ะ</p>
+        <p>ทดสอบ</p>
         <a
           className="App-link"
           href="https://reactjs.org"
