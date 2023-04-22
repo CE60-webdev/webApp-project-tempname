@@ -1,0 +1,65 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    background-color: #d9d9d9;
+}
+
+
+.btn{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 0;
+    max-width: 268px;
+    height: 44px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#f1{
+    max-width: 35rem;
+    margin-left: 4.5rem;
+    padding-top: 2rem;
+}
+
+.form-control{
+    background-color: #ebdd9d;
+    border-style: none;
+    max-width: 680px;
+    width: 675px;
+}
+
+h3{
+    color: white;
+    margin-left: 4rem;
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+
+    width: 129px;
+    height: 48px;
+    
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+}
+
+hr{
+    max-width: 42.5rem;
+    margin: auto;
+    padding-bottom: 1.5rem;
+}
+
+.container{
+    background-color: #b69363;
+    border: 2px solid black;
+    border-radius: 20px;
+
+    width: 846px;
+    height: 500px;
+}
+
+.navbar{
+    margin-bottom: 6rem;
+}
