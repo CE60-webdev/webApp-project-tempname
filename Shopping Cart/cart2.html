@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bootstrap Shopping Cart UI</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./cart2.css">
+  <script src="./cart2.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Shopping Cart</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Cart</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="https://via.placeholder.com/150" alt="Product Image">
+          <div class="card-body">
+            <h5 class="card-title">Product 1</h5>
+            <p class="card-text">$0.99</p>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button class="minus-btn btn btn-secondary" type="button">-</button>
+              </div>
+              <input type="number" class="qty-input form-control" value="1">
+              <div class="input-group-append">
+                <button class="plus-btn btn btn-secondary" type="button">+</button>
+              </div>
+            </div>
+            <button class="add-to-cart-btn btn btn-primary">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="https://via.placeholder.com/150" alt="Product Image">
+          <div class="card-body">
+            <h5 class="card-title">Product 2</h5>
+            <p class="card-text">$10.99</p>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button class="minus-btn btn btn-secondary" type="button">-</button>
+              </div>
+              <input type="number" class="qty-input form-control" value="1">
+              <div class="input-group-append">
+                <button class="plus-btn btn btn-secondary" type="button">+</button>
+              </div>
+            </div>
+            <button class="add-to-cart-btn btn btn-primary">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="https://via.placeholder.com/150" alt="Product Image">
+          <div class="card-body">
+            <h5 class="card-title">Product 3</h5>
+            <p class="card-text">$20.99</p>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button class="minus-btn btn btn-secondary" type="button">-</button>
+              </div>
+              <input type="number" class="qty-input form-control" value="1">
+              <div class="input-group-append">
+                <button class="plus-btn btn btn-secondary" type="button">+</button>
+              </div>
+            </div>
+            <button class="add-to-cart-btn btn btn-primary">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button style="cursor: pointer;" type="button" onclick="openForm()" id="img-btn"><img src="./Pinto.png" id="img1"></button>
+
+  <!-- The form -->
+  <div class="form-popup" id="myForm">
+    <form action="/action_page.php" class="form-container">
+      <div>
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <h4 class="col">Cart</h4>
+              <button class="col" type="button" onclick="closeForm()" id="close-btn"><span class="close">&times;</span></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <ul class="list-group cart-list">
+              <!-- Cart items will be dynamically added here -->
+            </ul>
+            <div class="mt-3">
+              <p><strong>Subtotal: $<span class="subtotal">0.00</span></strong></p>
+              <button type="button" class="btn btn-success btn-block checkout-btn"><i class="fa fa-check"></i> Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+  <script>
+    $(function() {
+      var cart = [];
+      var subtotal = 0;
+
+      // Add to Cart Button Click Event
+      $('.add-to-cart-btn').on('click', function() {
+    var name = $(this).siblings('.card-title').text(); // get product name from the card title
+    var qty = parseInt($(this).siblings('.input-group').find('.qty-input').val()); // get product quantity from the input field
+    var price = parseFloat($(this).siblings('.card-text').text().substring(1)); // get product price from the card text
+    var item = {
+        name: name,
+        qty: qty,
+        price: price
+    };
+      cart.push(item);
+      console.log(item);
+      updateCart();
+    });
+
+      // Minus Button Click Event
+      $('.minus-btn').on('click', function() {
+        var qty = parseInt($('.qty-input').val());
+        if (qty > 1) {
+          $('.qty-input').val(qty - 1);
+        }
+      });
+
+      // Plus Button Click Event
+      $('.plus-btn').on('click', function() {
+        var qty = parseInt($('.qty-input').val());
+        $('.qty-input').val(qty + 1);
+      });
+
+      // Checkout Button Click Event
+      $('.checkout-btn').on('click', function() {
+        alert('Your order has been submitted!');
+        cart = [];
+        subtotal = 0;
+        $('.cart-list').empty();
+        $('.subtotal').text('0.00');
+      });
+
+      // Update Cart Function
+      function updateCart() {
+        $('.cart-list').empty();
+        subtotal = 0;
+        $.each(cart, function(i, item) {
+          var existingItem = $('.cart-list').find('.cart-item-name:contains(' + item.name + ')');
+          if (existingItem.length) {
+            var existingQty = parseInt(existingItem.siblings('.cart-item-qty').text());
+            var oldTotal = parseFloat(existingItem.siblings('.cart-item-price').text().substring(1));
+            var newTotal = (existingQty + item.qty) * item.price;
+            existingItem.siblings('.cart-item-qty').text(existingQty + item.qty);
+            existingItem.siblings('.cart-item-price').text('$' + newTotal.toFixed(2));
+            subtotal += (newTotal - oldTotal);
+          } else {
+            var total = item.qty * item.price;
+            subtotal += total;
+            $('.cart-list').append('<li class="list-group-item">' + 
+                                  '<span class="cart-item-name">' + item.name + " " + '</span>' +
+                                  '<span class="cart-item-qty">' + item.qty + '</span> x ' +
+                                  '<span class="cart-item-price">$' + total.toFixed(2) + '</span>' +
+                                  '</li>');
+          }
+        });
+        $('.subtotal').text(subtotal.toFixed(2));
+      }
+    });
+    
+  </script>
+</body>
+</html>
