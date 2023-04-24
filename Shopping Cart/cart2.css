@@ -1,0 +1,52 @@
+{box-sizing: border-box;}
+
+#img-btn {
+  max-width: 150px;
+  max-height: 150px;
+  padding: 16px 20px;
+  background-color: transparent;
+  border: none;
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+  outline: none;
+}
+
+#close-btn{
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+#img1 {
+  width: 150px;
+  height: 150px;
+  border:none;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 400px;
+  width:400px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
